@@ -33,7 +33,7 @@ public class SupplierController {
 	 
 	 
 	 
-	 @RequestMapping(name= "/supplier/get/{id}" ,method=RequestMethod.GET)
+	/** @RequestMapping(name= "/supplier/get/{id}" ,method=RequestMethod.GET)
 	public ModelAndView getSupplier(@RequestParam("id") String id)
 	{
 		 supplier=supplierDAO.get(id);
@@ -41,8 +41,8 @@ public class SupplierController {
 		mv.addObject("supplier", supplier);
 		return mv;
 		
-	}
-	 @PostMapping("/supplier/save/")
+	}**/
+	 @PostMapping(name="/supplier/save/")
 	 public ModelAndView saveSupplier(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("address") String address)
 	 {
 		 ModelAndView mv=new ModelAndView("redirect:/ManageSupplier");
@@ -80,7 +80,7 @@ public class SupplierController {
 		 return mv;
 		 
 	 }
-	 @DeleteMapping("/supplier/delete/{id}")
+	 @GetMapping("/supplier/delete")
 	 public ModelAndView deleteSupplier(@RequestParam("id") String id)
 	 {
 		 ModelAndView mv=new ModelAndView("redirect:/ManageSupplier");
@@ -98,7 +98,7 @@ public class SupplierController {
 	 @GetMapping("/suppliers")
 	 public ModelAndView getAllSupplier()
 	 {	
-		ModelAndView mv= new ModelAndView();
+		ModelAndView mv= new ModelAndView("home");
 	 List<Supplier> suppliers=supplierDAO.list();
 	 mv.addObject("suppliers", suppliers);
 	 return mv;

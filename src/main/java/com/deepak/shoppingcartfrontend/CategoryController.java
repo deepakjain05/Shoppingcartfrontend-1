@@ -36,16 +36,16 @@ public class CategoryController
 	@Autowired
 	private  HttpSession httpSession;
 	
-	@RequestMapping(name="/category/get/{id}",method=RequestMethod.GET)
+	/**@RequestMapping(name="/category/get/{id}",method=RequestMethod.GET)
 	public ModelAndView getCategory(@RequestParam("id") String id)
 	{
 		category= categoryDAO.get(id);
 		ModelAndView mv=new ModelAndView("home");
 		mv.addObject("category", category);
 		return mv;
-	}
+	}**/
 	
-	@PostMapping(name="/category/save/")
+	@PostMapping("/category/save/")
 	public ModelAndView saveCategory(@RequestParam("id") String id, @RequestParam("name") String name, @RequestParam("description") String description)
 
 	{
@@ -107,7 +107,7 @@ public class CategoryController
 	{
 		ModelAndView mv=new ModelAndView("home");
 		List<Category> categories=categoryDAO.list();
-		httpSession.setAttribute("categories", categories);
+		mv.addObject("categories", categories);
 		return mv;
 	}
 	

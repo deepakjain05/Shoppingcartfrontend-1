@@ -55,6 +55,12 @@ public class AdminController {
 	{
 		ModelAndView  mv= new ModelAndView("home");
 		mv.addObject("AdminClickedProduct",true);
+		List<Category> categories=categoryDAO.list();
+		List<Product> products=productDAO.list();
+		List<Supplier> suppliers=supplierDAO.list();
+		httpSession.setAttribute("products", products);
+		httpSession.setAttribute("categories", categories);
+		httpSession.setAttribute("suppliers", suppliers);
 		return mv;
 	}
 	
@@ -63,6 +69,8 @@ public class AdminController {
 	{
 		ModelAndView  mv= new ModelAndView("home");
 		mv.addObject("AdminClickedSupplier",true);
+		List<Supplier> suppliers=supplierDAO.list();
+		httpSession.setAttribute("suppliers", suppliers);
 		return mv;
 	}
 }
