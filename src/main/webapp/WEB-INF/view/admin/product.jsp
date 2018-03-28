@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	${clickedproductssuccess} ${clickedproducterror}
+	${clickedproductsuccess} ${clickedproducterror}
 	<form action="product/save/" method="post">
 		<table border="1">
 			<tr>

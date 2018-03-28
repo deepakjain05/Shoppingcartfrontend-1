@@ -65,11 +65,11 @@ public class ProductController
 		 
 		 if(productDAO.save(product)==true)
 		 {
-			 httpSession.setAttribute("SuccessMessage", "Product Saved Successfully");
+			 httpSession.setAttribute("clickedproductsuccess", "Product Saved Successfully");
 		 }
 		 else
 		 {
-			 httpSession.setAttribute("ErrorMessage", "Product couldn't Save Successfully");
+			 httpSession.setAttribute("clickedproducterror", "Product couldn't Save Successfully");
 		 }
 		 return mv;
 	 }

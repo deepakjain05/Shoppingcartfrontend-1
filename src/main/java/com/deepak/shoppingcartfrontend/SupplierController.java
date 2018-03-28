@@ -69,7 +69,7 @@ public class SupplierController {
 	 
 	 {
 		 ModelAndView mv=new ModelAndView("home");
-		 if(supplierDAO.update(supplier)==true)
+		 if(supplierDAO.update(supplier))
 		 {
 			 mv.addObject("SuccessMessage", "Supplier Updated Successfully");
 		 }
