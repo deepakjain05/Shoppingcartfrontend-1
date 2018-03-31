@@ -15,12 +15,14 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.deepak.shoppingcart.dao.ProductDAO;
 import com.deepak.shoppingcart.dao.SupplierDAO;
 import com.deepak.shoppingcart.domain.Product;
 import com.deepak.shoppingcart.domain.Supplier;
+import com.niit.util.FileUtil;
 
 @Controller
 public class ProductController 
@@ -51,7 +53,9 @@ public class ProductController
 	 public ModelAndView saveproduct(@RequestParam("id") String id , @RequestParam("name") String name, 
 			 @RequestParam("description") String description, @RequestParam("price") String price,
 			 @RequestParam("categoryID") String categoryID ,
-			 @RequestParam("supplierID") String supplierID)
+			 @RequestParam("supplierID") String supplierID,
+			 @RequestParam("file") MultipartFile file
+			 )
 	 {
 		 ModelAndView mv=new  ModelAndView("redirect:/ManageProducts");
 		 
@@ -65,11 +69,20 @@ public class ProductController
 		 
 		 if(productDAO.save(product)==true)
 		 {
-			 httpSession.setAttribute("clickedproductsuccess", "Product Saved Successfully");
+			 
+			 mv.addObject("clickedproductsuccess", "Product Saved Successfully");
+			 if(FileUtil.fileCopyNIO(file, id + ".PNG"))
+			 {
+				 mv.addObject("uploadMessage","product image uploaded successfully");
+			 }
+			 else
+			 {
+				 mv.addObject("uploadMessage","product image couldnt upload");
+			 }
 		 }
 		 else
 		 {
-			 httpSession.setAttribute("clickedproducterror", "Product couldn't Save Successfully");
+			 mv.addObject("clickedproducterror", "Product couldn't Save Successfully");
 		 }
 		 return mv;
 	 }

@@ -10,7 +10,7 @@
 </head>
 <body>
 	${clickedproductsuccess} ${clickedproducterror}
-	<form action="product/save/" method="post">
+	<form action="product/save/" method="post"  enctype="multipart/form-data">
 		<table border="1">
 			<tr>
 				<td>ID :</td>
@@ -41,6 +41,13 @@
 						</c:forEach>
 				</select></td>
 
+			</tr>
+			
+			<tr>
+			<td>
+			Product Image : <input type="file" name ="file">
+			</td>
+			
 			</tr>
 			<tr>
 				<td>Select Supplier</td>

@@ -10,7 +10,7 @@
 </head>
 <body>
 ${clickedcategoriessuccess}
-${clickedcategoriessuccess}
+${clickedcategorieserror}
 <form action="category/save/" method="post">
 <table border="1">
 <tr>
