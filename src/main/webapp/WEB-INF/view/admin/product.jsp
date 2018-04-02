@@ -14,23 +14,23 @@
 		<table border="1">
 			<tr>
 				<td>ID :</td>
-				<td><input type="text" name="id" value="${selectProducts.id}"></td>
+				<td><input type="text" name="id" value="${selectedProduct.id}"></td>
 			</tr>
 
 			<tr>
 				<td>Name:</td>
 				<td><input type="text" name="name"
-					value="${selectProducts.name}"></td>
+					value="${selectedProduct.name}"></td>
 			</tr>
 			<tr>
 				<td>Description :</td>
 				<td><input type="text" name="description"
-					value="${selectProducts.description}"></td>
+					value="${selectedProduct.description}"></td>
 			</tr>
 			<tr>
 				<td>Price :</td>
 				<td><input type="text" name="price"
-					value="${selectProducts.price}"></td>
+					value="${selectedProduct.price}"></td>
 
 			</tr>
 			<tr>

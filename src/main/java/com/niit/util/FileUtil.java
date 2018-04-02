@@ -10,16 +10,16 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
 	
-	private static final Logger log=LoggerFactory.getLogger(FileUtil.class);
+	private static final Logger logger =LoggerFactory.getLogger(FileUtil.class);
 	
-	private static final String imageDirectory="ShoppingCartImages";
+	private static final String imageDirectory= "ShoppingCartImages";
 	
 	private static String rootpath= System.getProperty("catalina.home");
 	
 	
      public static boolean fileCopyNIO(MultipartFile file ,String fileName)
      {
-    	File dest= new File(rootpath +File.separator +imageDirectory + File.separator +fileName); 
+    	File dest= new File(rootpath +File.separator +imageDirectory +File.separator +fileName); 
     	
     
 		try {

@@ -1,6 +1,7 @@
 package com.deepak.shoppingcartfrontend;
 
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -40,6 +41,10 @@ public class ProductController
 	 @Autowired 
 	 private SupplierDAO supplierDAO;
 	 
+	 private static final String imageDirectory= "ShoppingCartImages";
+	 
+	 private static String rootpath= System.getProperty("catalina.home");
+	 
 	/** @RequestMapping(name= "/product/get/{id}" ,method=RequestMethod.GET)
 	public ModelAndView getProduct(@RequestParam("id") String id)
 	{
@@ -49,13 +54,25 @@ public class ProductController
 		return mv;
 		
 	}*/
+	 @GetMapping("/product/get")
+	 public ModelAndView getProduct(@RequestParam String id)
+	 {
+		 product =productDAO.get(id);
+		 ModelAndView mv=new ModelAndView("home");
+		 mv.addObject("selectedProduct", "product");
+		 mv.addObject("isUserSelectedproduct", true);
+		 mv.addObject("selectedProductImage", rootpath +File.separator +imageDirectory +File.separator +id + ".PNG");
+		 
+		 return mv;
+		 
+	 }
 	 @PostMapping("/product/save")
 	 public ModelAndView saveproduct(@RequestParam("id") String id , @RequestParam("name") String name, 
 			 @RequestParam("description") String description, @RequestParam("price") String price,
 			 @RequestParam("categoryID") String categoryID ,
 			 @RequestParam("supplierID") String supplierID,
-			 @RequestParam("file") MultipartFile file
-			 )
+			 @RequestParam("file") MultipartFile file)
+			 
 	 {
 		 ModelAndView mv=new  ModelAndView("redirect:/ManageProducts");
 		 
@@ -67,11 +84,12 @@ public class ProductController
 		 product.setCategoryId(categoryID);
 		 product.setSupplierId(supplierID);
 		 
-		 if(productDAO.save(product)==true)
+		 if(productDAO.save(product))
 		 {
 			 
 			 mv.addObject("clickedproductsuccess", "Product Saved Successfully");
-			 if(FileUtil.fileCopyNIO(file, id + ".PNG"))
+			
+			 if(FileUtil.fileCopyNIO(file, id+ ".PNG")) 
 			 {
 				 mv.addObject("uploadMessage","product image uploaded successfully");
 			 }
@@ -131,7 +149,7 @@ public class ProductController
 		{
 			ModelAndView mv=new ModelAndView("redirect:/ManageProducts");
 			 product=productDAO.get(id);
-			httpSession.setAttribute("selectProducts", product);
+			httpSession.setAttribute("selectedProduct", product);
 			return mv;
 			
 		}
