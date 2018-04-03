@@ -42,6 +42,8 @@ public class UserController {
 			
 			httpSession.setAttribute("loggedInUserID", user.getEmailID()); 
 			
+			
+			
 			if(user.getRole()=='A')
 			{
 				httpSession.setAttribute("adminlogin",true);

@@ -26,14 +26,17 @@ ${errormessage}
 
 <jsp:include page="product_menu.jsp"></jsp:include>
 
-
+<c:if test="${isUserSelectedproduct==true}">
+<jsp:include page="selected_product.jsp"></jsp:include>
+</c:if>
 <c:if test="${adminlogin==true}">
 <jsp:include page="admin/adminhome.jsp"></jsp:include>
 </c:if>
 
 
 
-
+${successMessage}
+${errorMessage}
 ${SuccessMessage}
 ${ErrorMessage}
 
