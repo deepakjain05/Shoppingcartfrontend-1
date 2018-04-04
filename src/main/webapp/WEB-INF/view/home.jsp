@@ -24,7 +24,8 @@ ${errormessage}
 
 
 
-<jsp:include page="product_menu.jsp"></jsp:include>
+<%-- <jsp:include page="product_menu.jsp"></jsp:include>--%>
+<jsp:include page="bootstrap_productmenu.jsp"></jsp:include>
 
 <c:if test="${isUserSelectedproduct==true}">
 <jsp:include page="selected_product.jsp"></jsp:include>

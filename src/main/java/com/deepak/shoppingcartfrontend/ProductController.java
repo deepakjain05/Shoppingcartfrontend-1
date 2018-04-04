@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.deepak.shoppingcart.dao.ProductDAO;
 import com.deepak.shoppingcart.dao.SupplierDAO;
@@ -54,7 +56,7 @@ public class ProductController
 		return mv;
 		
 	}*/
-	 @GetMapping("/product/get")
+	 /*@GetMapping("/product/get")
 	 public ModelAndView getProduct(@RequestParam String id)
 	 {
 		 product =productDAO.get(id);
@@ -63,6 +65,16 @@ public class ProductController
 		 mv.addObject("isUserSelectedproduct", true);
 		 mv.addObject("selectedProductImage", rootpath +File.separator +imageDirectory +File.separator +id + ".PNG");
 		 
+		 return mv;
+		 
+	 }*/
+	@GetMapping("/product/get/{id}")
+	 public ModelAndView getSelectedProduct(@PathVariable("id") String id , RedirectAttributes redirectAttributes)
+	 {
+		 ModelAndView mv= new ModelAndView("redirect:/");
+		 redirectAttributes.addFlashAttribute("selectedProduct", productDAO.get(id));
+		 redirectAttributes.addFlashAttribute("isUserSelectedProduct",true);
+		 redirectAttributes.addFlashAttribute("selectedProductImage", rootpath +File.separator +imageDirectory +File.separator +id + ".PNG");
 		 return mv;
 		 
 	 }
